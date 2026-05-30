@@ -1,0 +1,66 @@
+generator client {
+  provider = "prisma-client"
+  output   = "../generated/prisma"
+}
+
+datasource db {
+  provider = "mysql"
+}
+
+model Barbeiro {
+  id     Int     @id @default(autoincrement())
+  nome   String  @db.VarChar(40)
+  obs    String? @db.VarChar(100)
+  saldo  Decimal @default(0) @db.Decimal(9, 2)
+  vendas Venda[]
+
+  @@map("barbeiros")
+}
+
+model Cliente {
+  id     Int     @id @default(autoincrement())
+  nome   String  @db.VarChar(40)
+  email  String  @db.VarChar(60)
+  vendas Venda[]
+
+  @@map("clientes")
+}
+
+model Servico_produto {
+  id        Int        @id @default(autoincrement())
+  nome      String     @db.VarChar(60)
+  quant     Int        @db.SmallInt
+  preco     Decimal    @db.Decimal(9, 2)
+  categoria Categorias
+  vendas    Venda[]
+
+  @@map("servicos_produtos")
+}
+
+model Venda {
+  id         Int             @id @default(autoincrement())
+  cliente    Cliente         @relation(fields: [clienteId], references: [id])
+  clienteId  Int
+  servico    Servico_produto @relation(fields: [servicoId], references: [id])
+  servicoId  Int
+  barbeiro   Barbeiro        @relation(fields: [barbeiroId], references: [id])
+  barbeiroId Int
+  fPagamento Tipos
+  quant      Int             @default(1)
+  preco      Decimal         @db.Decimal(9, 2)
+  data       DateTime        @default(now())
+  categoria  Categorias
+
+  @@map("vendas")
+}
+
+enum Tipos {
+  PIX
+  Dinheiro
+  Cartao
+}
+
+enum Categorias {
+  Servico
+  Produto
+}
