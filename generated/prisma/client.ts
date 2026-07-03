@@ -61,3 +61,13 @@ export type Servico_produto = Prisma.Servico_produtoModel
  * 
  */
 export type Venda = Prisma.VendaModel
+/**
+ * Model Usuario
+ * 
+ */
+export type Usuario = Prisma.UsuarioModel
+/**
+ * Model Log
+ * 
+ */
+export type Log = Prisma.LogModel

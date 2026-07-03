@@ -8,11 +8,12 @@ datasource db {
 }
 
 model Barbeiro {
-  id     Int     @id @default(autoincrement())
-  nome   String  @db.VarChar(40)
-  obs    String? @db.VarChar(100)
-  saldo  Decimal @default(0) @db.Decimal(9, 2)
-  vendas Venda[]
+  id      Int      @id @default(autoincrement())
+  nome    String   @db.VarChar(40)
+  obs     String?  @db.VarChar(100)
+  saldo   Decimal  @default(0) @db.Decimal(9, 2)
+  vendas  Venda[]
+  usuario Usuario?
 
   @@map("barbeiros")
 }
@@ -63,4 +64,36 @@ enum Tipos {
 enum Categorias {
   Servico
   Produto
+}
+
+model Usuario {
+  id                              Int       @id @default(autoincrement())
+  nome                            String    @db.VarChar(60)
+  email                           String    @unique @db.VarChar(100)
+  senha                           String    @db.VarChar(255)
+  status                          String    @default("INATIVO") @db.VarChar(20)
+  codigoAtivacao                  String?   @db.VarChar(100)
+  codigoRecuperacaoSenha          String?   @db.VarChar(10)
+  validadeCodigoRecuperacaoSenha  DateTime?
+  tentativasLoginInvalidas        Int       @default(0)
+  usuarioBloqueado                Boolean   @default(false)
+  ultimoLogin                     DateTime?
+  barbeiroId                      Int?      @unique
+  barbeiro                        Barbeiro? @relation(fields: [barbeiroId], references: [id])
+  logs                            Log[]
+  criadoEm                        DateTime  @default(now())
+
+  @@map("usuarios")
+}
+
+model Log {
+  id         Int      @id @default(autoincrement())
+  usuarioId  Int?
+  usuario    Usuario? @relation(fields: [usuarioId], references: [id])
+  acao       String   @db.VarChar(100)
+  descricao  String?  @db.VarChar(255)
+  enderecoIp String?  @db.VarChar(45)
+  dataHora   DateTime @default(now())
+
+  @@map("logs")
 }

@@ -54,7 +54,9 @@ export const ModelName = {
   Barbeiro: 'Barbeiro',
   Cliente: 'Cliente',
   Servico_produto: 'Servico_produto',
-  Venda: 'Venda'
+  Venda: 'Venda',
+  Usuario: 'Usuario',
+  Log: 'Log'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -118,6 +120,37 @@ export const VendaScalarFieldEnum = {
 export type VendaScalarFieldEnum = (typeof VendaScalarFieldEnum)[keyof typeof VendaScalarFieldEnum]
 
 
+export const UsuarioScalarFieldEnum = {
+  id: 'id',
+  nome: 'nome',
+  email: 'email',
+  senha: 'senha',
+  status: 'status',
+  codigoAtivacao: 'codigoAtivacao',
+  codigoRecuperacaoSenha: 'codigoRecuperacaoSenha',
+  validadeCodigoRecuperacaoSenha: 'validadeCodigoRecuperacaoSenha',
+  tentativasLoginInvalidas: 'tentativasLoginInvalidas',
+  usuarioBloqueado: 'usuarioBloqueado',
+  ultimoLogin: 'ultimoLogin',
+  barbeiroId: 'barbeiroId',
+  criadoEm: 'criadoEm'
+} as const
+
+export type UsuarioScalarFieldEnum = (typeof UsuarioScalarFieldEnum)[keyof typeof UsuarioScalarFieldEnum]
+
+
+export const LogScalarFieldEnum = {
+  id: 'id',
+  usuarioId: 'usuarioId',
+  acao: 'acao',
+  descricao: 'descricao',
+  enderecoIp: 'enderecoIp',
+  dataHora: 'dataHora'
+} as const
+
+export type LogScalarFieldEnum = (typeof LogScalarFieldEnum)[keyof typeof LogScalarFieldEnum]
+
+
 export const SortOrder = {
   asc: 'asc',
   desc: 'desc'
@@ -155,4 +188,25 @@ export const Servico_produtoOrderByRelevanceFieldEnum = {
 } as const
 
 export type Servico_produtoOrderByRelevanceFieldEnum = (typeof Servico_produtoOrderByRelevanceFieldEnum)[keyof typeof Servico_produtoOrderByRelevanceFieldEnum]
+
+
+export const UsuarioOrderByRelevanceFieldEnum = {
+  nome: 'nome',
+  email: 'email',
+  senha: 'senha',
+  status: 'status',
+  codigoAtivacao: 'codigoAtivacao',
+  codigoRecuperacaoSenha: 'codigoRecuperacaoSenha'
+} as const
+
+export type UsuarioOrderByRelevanceFieldEnum = (typeof UsuarioOrderByRelevanceFieldEnum)[keyof typeof UsuarioOrderByRelevanceFieldEnum]
+
+
+export const LogOrderByRelevanceFieldEnum = {
+  acao: 'acao',
+  descricao: 'descricao',
+  enderecoIp: 'enderecoIp'
+} as const
+
+export type LogOrderByRelevanceFieldEnum = (typeof LogOrderByRelevanceFieldEnum)[keyof typeof LogOrderByRelevanceFieldEnum]
 

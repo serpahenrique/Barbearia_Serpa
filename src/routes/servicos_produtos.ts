@@ -2,6 +2,7 @@ import { prisma } from "../../lib/prisma"
 import { Router } from "express"
 import { z } from "zod"
 import { Categorias } from "../../generated/prisma/enums"
+import { autenticacao } from "../middlewares/autenticacao"
 
 const router = Router()
 
@@ -100,7 +101,7 @@ router.put("/:id", async (req, res) => {
     }
 })
 
-router.delete("/:id", async (req, res) => {
+router.delete("/:id", autenticacao, async (req, res) => {
 
     const { id } = req.params
     try {

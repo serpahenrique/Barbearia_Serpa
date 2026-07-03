@@ -213,6 +213,7 @@ export type BarbeiroWhereInput = {
   obs?: Prisma.StringNullableFilter<"Barbeiro"> | string | null
   saldo?: Prisma.DecimalFilter<"Barbeiro"> | runtime.Decimal | runtime.DecimalJsLike | number | string
   vendas?: Prisma.VendaListRelationFilter
+  usuario?: Prisma.XOR<Prisma.UsuarioNullableScalarRelationFilter, Prisma.UsuarioWhereInput> | null
 }
 
 export type BarbeiroOrderByWithRelationInput = {
@@ -221,6 +222,7 @@ export type BarbeiroOrderByWithRelationInput = {
   obs?: Prisma.SortOrderInput | Prisma.SortOrder
   saldo?: Prisma.SortOrder
   vendas?: Prisma.VendaOrderByRelationAggregateInput
+  usuario?: Prisma.UsuarioOrderByWithRelationInput
   _relevance?: Prisma.BarbeiroOrderByRelevanceInput
 }
 
@@ -233,6 +235,7 @@ export type BarbeiroWhereUniqueInput = Prisma.AtLeast<{
   obs?: Prisma.StringNullableFilter<"Barbeiro"> | string | null
   saldo?: Prisma.DecimalFilter<"Barbeiro"> | runtime.Decimal | runtime.DecimalJsLike | number | string
   vendas?: Prisma.VendaListRelationFilter
+  usuario?: Prisma.XOR<Prisma.UsuarioNullableScalarRelationFilter, Prisma.UsuarioWhereInput> | null
 }, "id">
 
 export type BarbeiroOrderByWithAggregationInput = {
@@ -262,6 +265,7 @@ export type BarbeiroCreateInput = {
   obs?: string | null
   saldo?: runtime.Decimal | runtime.DecimalJsLike | number | string
   vendas?: Prisma.VendaCreateNestedManyWithoutBarbeiroInput
+  usuario?: Prisma.UsuarioCreateNestedOneWithoutBarbeiroInput
 }
 
 export type BarbeiroUncheckedCreateInput = {
@@ -270,6 +274,7 @@ export type BarbeiroUncheckedCreateInput = {
   obs?: string | null
   saldo?: runtime.Decimal | runtime.DecimalJsLike | number | string
   vendas?: Prisma.VendaUncheckedCreateNestedManyWithoutBarbeiroInput
+  usuario?: Prisma.UsuarioUncheckedCreateNestedOneWithoutBarbeiroInput
 }
 
 export type BarbeiroUpdateInput = {
@@ -277,6 +282,7 @@ export type BarbeiroUpdateInput = {
   obs?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   saldo?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   vendas?: Prisma.VendaUpdateManyWithoutBarbeiroNestedInput
+  usuario?: Prisma.UsuarioUpdateOneWithoutBarbeiroNestedInput
 }
 
 export type BarbeiroUncheckedUpdateInput = {
@@ -285,6 +291,7 @@ export type BarbeiroUncheckedUpdateInput = {
   obs?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   saldo?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   vendas?: Prisma.VendaUncheckedUpdateManyWithoutBarbeiroNestedInput
+  usuario?: Prisma.UsuarioUncheckedUpdateOneWithoutBarbeiroNestedInput
 }
 
 export type BarbeiroCreateManyInput = {
@@ -349,6 +356,11 @@ export type BarbeiroScalarRelationFilter = {
   isNot?: Prisma.BarbeiroWhereInput
 }
 
+export type BarbeiroNullableScalarRelationFilter = {
+  is?: Prisma.BarbeiroWhereInput | null
+  isNot?: Prisma.BarbeiroWhereInput | null
+}
+
 export type StringFieldUpdateOperationsInput = {
   set?: string
 }
@@ -387,10 +399,27 @@ export type BarbeiroUpdateOneRequiredWithoutVendasNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.BarbeiroUpdateToOneWithWhereWithoutVendasInput, Prisma.BarbeiroUpdateWithoutVendasInput>, Prisma.BarbeiroUncheckedUpdateWithoutVendasInput>
 }
 
+export type BarbeiroCreateNestedOneWithoutUsuarioInput = {
+  create?: Prisma.XOR<Prisma.BarbeiroCreateWithoutUsuarioInput, Prisma.BarbeiroUncheckedCreateWithoutUsuarioInput>
+  connectOrCreate?: Prisma.BarbeiroCreateOrConnectWithoutUsuarioInput
+  connect?: Prisma.BarbeiroWhereUniqueInput
+}
+
+export type BarbeiroUpdateOneWithoutUsuarioNestedInput = {
+  create?: Prisma.XOR<Prisma.BarbeiroCreateWithoutUsuarioInput, Prisma.BarbeiroUncheckedCreateWithoutUsuarioInput>
+  connectOrCreate?: Prisma.BarbeiroCreateOrConnectWithoutUsuarioInput
+  upsert?: Prisma.BarbeiroUpsertWithoutUsuarioInput
+  disconnect?: Prisma.BarbeiroWhereInput | boolean
+  delete?: Prisma.BarbeiroWhereInput | boolean
+  connect?: Prisma.BarbeiroWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.BarbeiroUpdateToOneWithWhereWithoutUsuarioInput, Prisma.BarbeiroUpdateWithoutUsuarioInput>, Prisma.BarbeiroUncheckedUpdateWithoutUsuarioInput>
+}
+
 export type BarbeiroCreateWithoutVendasInput = {
   nome: string
   obs?: string | null
   saldo?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  usuario?: Prisma.UsuarioCreateNestedOneWithoutBarbeiroInput
 }
 
 export type BarbeiroUncheckedCreateWithoutVendasInput = {
@@ -398,6 +427,7 @@ export type BarbeiroUncheckedCreateWithoutVendasInput = {
   nome: string
   obs?: string | null
   saldo?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  usuario?: Prisma.UsuarioUncheckedCreateNestedOneWithoutBarbeiroInput
 }
 
 export type BarbeiroCreateOrConnectWithoutVendasInput = {
@@ -420,6 +450,7 @@ export type BarbeiroUpdateWithoutVendasInput = {
   nome?: Prisma.StringFieldUpdateOperationsInput | string
   obs?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   saldo?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  usuario?: Prisma.UsuarioUpdateOneWithoutBarbeiroNestedInput
 }
 
 export type BarbeiroUncheckedUpdateWithoutVendasInput = {
@@ -427,6 +458,53 @@ export type BarbeiroUncheckedUpdateWithoutVendasInput = {
   nome?: Prisma.StringFieldUpdateOperationsInput | string
   obs?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   saldo?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  usuario?: Prisma.UsuarioUncheckedUpdateOneWithoutBarbeiroNestedInput
+}
+
+export type BarbeiroCreateWithoutUsuarioInput = {
+  nome: string
+  obs?: string | null
+  saldo?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  vendas?: Prisma.VendaCreateNestedManyWithoutBarbeiroInput
+}
+
+export type BarbeiroUncheckedCreateWithoutUsuarioInput = {
+  id?: number
+  nome: string
+  obs?: string | null
+  saldo?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  vendas?: Prisma.VendaUncheckedCreateNestedManyWithoutBarbeiroInput
+}
+
+export type BarbeiroCreateOrConnectWithoutUsuarioInput = {
+  where: Prisma.BarbeiroWhereUniqueInput
+  create: Prisma.XOR<Prisma.BarbeiroCreateWithoutUsuarioInput, Prisma.BarbeiroUncheckedCreateWithoutUsuarioInput>
+}
+
+export type BarbeiroUpsertWithoutUsuarioInput = {
+  update: Prisma.XOR<Prisma.BarbeiroUpdateWithoutUsuarioInput, Prisma.BarbeiroUncheckedUpdateWithoutUsuarioInput>
+  create: Prisma.XOR<Prisma.BarbeiroCreateWithoutUsuarioInput, Prisma.BarbeiroUncheckedCreateWithoutUsuarioInput>
+  where?: Prisma.BarbeiroWhereInput
+}
+
+export type BarbeiroUpdateToOneWithWhereWithoutUsuarioInput = {
+  where?: Prisma.BarbeiroWhereInput
+  data: Prisma.XOR<Prisma.BarbeiroUpdateWithoutUsuarioInput, Prisma.BarbeiroUncheckedUpdateWithoutUsuarioInput>
+}
+
+export type BarbeiroUpdateWithoutUsuarioInput = {
+  nome?: Prisma.StringFieldUpdateOperationsInput | string
+  obs?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  saldo?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  vendas?: Prisma.VendaUpdateManyWithoutBarbeiroNestedInput
+}
+
+export type BarbeiroUncheckedUpdateWithoutUsuarioInput = {
+  id?: Prisma.IntFieldUpdateOperationsInput | number
+  nome?: Prisma.StringFieldUpdateOperationsInput | string
+  obs?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  saldo?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  vendas?: Prisma.VendaUncheckedUpdateManyWithoutBarbeiroNestedInput
 }
 
 
@@ -466,6 +544,7 @@ export type BarbeiroSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs
   obs?: boolean
   saldo?: boolean
   vendas?: boolean | Prisma.Barbeiro$vendasArgs<ExtArgs>
+  usuario?: boolean | Prisma.Barbeiro$usuarioArgs<ExtArgs>
   _count?: boolean | Prisma.BarbeiroCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["barbeiro"]>
 
@@ -481,6 +560,7 @@ export type BarbeiroSelectScalar = {
 export type BarbeiroOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "nome" | "obs" | "saldo", ExtArgs["result"]["barbeiro"]>
 export type BarbeiroInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   vendas?: boolean | Prisma.Barbeiro$vendasArgs<ExtArgs>
+  usuario?: boolean | Prisma.Barbeiro$usuarioArgs<ExtArgs>
   _count?: boolean | Prisma.BarbeiroCountOutputTypeDefaultArgs<ExtArgs>
 }
 
@@ -488,6 +568,7 @@ export type $BarbeiroPayload<ExtArgs extends runtime.Types.Extensions.InternalAr
   name: "Barbeiro"
   objects: {
     vendas: Prisma.$VendaPayload<ExtArgs>[]
+    usuario: Prisma.$UsuarioPayload<ExtArgs> | null
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: number
@@ -835,6 +916,7 @@ readonly fields: BarbeiroFieldRefs;
 export interface Prisma__BarbeiroClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
   vendas<T extends Prisma.Barbeiro$vendasArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Barbeiro$vendasArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$VendaPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  usuario<T extends Prisma.Barbeiro$usuarioArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Barbeiro$usuarioArgs<ExtArgs>>): Prisma.Prisma__UsuarioClient<runtime.Types.Result.GetResult<Prisma.$UsuarioPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -1237,6 +1319,25 @@ export type Barbeiro$vendasArgs<ExtArgs extends runtime.Types.Extensions.Interna
   take?: number
   skip?: number
   distinct?: Prisma.VendaScalarFieldEnum | Prisma.VendaScalarFieldEnum[]
+}
+
+/**
+ * Barbeiro.usuario
+ */
+export type Barbeiro$usuarioArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the Usuario
+   */
+  select?: Prisma.UsuarioSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the Usuario
+   */
+  omit?: Prisma.UsuarioOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.UsuarioInclude<ExtArgs> | null
+  where?: Prisma.UsuarioWhereInput
 }
 
 /**
