@@ -7,6 +7,7 @@ import routesClientes from "./routes/cliente"
 import routesVendas from "./routes/vendas"
 import routesServicosProdutos from "./routes/servicos_produtos"
 import routesUsuarios from "./routes/usuarios"
+import routesLogs from "./routes/log"
 
 app.use(express.json())
 
@@ -15,7 +16,7 @@ app.use("/clientes", routesClientes)
 app.use("/servicos_produtos", routesServicosProdutos)
 app.use("/vendas", routesVendas)
 app.use("/usuarios", routesUsuarios)
-
+app.use("/logs", routesLogs)
 app.get('/', (req, res) => {
   res.send('API: Sistema da Barbearia Serpa')
 })
@@ -23,3 +24,4 @@ app.get('/', (req, res) => {
 app.listen(port, () => {
   console.log(`Servidor Rodando na Porta: ${port}`)
 })
+

@@ -260,7 +260,7 @@ router.post("/login", async (req, res) => {
     })
 
     const chaveSecreta = process.env.JWT_SECRET as string
-    const tempoExpiracaoToken = process.env.JWT_EXPIRACAO ?? "1h"
+    const tempoExpiracaoToken = process.env.JWT_EXPIRACAO ?? "7d"
 
     const token = jwt.sign(
       { id: usuario.id, email: usuario.email },
@@ -386,5 +386,6 @@ router.patch("/:id/desbloquear", autenticacao, async (req, res) => {
     res.status(400).json({ erro: "Erro ao desbloquear usuário" })
   }
 })
+
 
 export default router
